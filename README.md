@@ -1,7 +1,7 @@
 # inf-263-Desarrollo de Aplicaciones Multimedia
-**Universidad Mayor de San Andres**/
-**Carrera: **Informatica/
-**Materia: **Desarrollo de Aplicaciones Multimedia/
+**Universidad Mayor de San Andres**\
+**Carrera: **Informatica\
+**Materia: **Desarrollo de Aplicaciones Multimedia\
 **Estudiante: **Luis Alberto Cabrera Quispe
 ---
 ### Avance de materia
