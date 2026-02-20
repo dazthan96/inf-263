@@ -1,0 +1,43 @@
+# === EXCLUSIONES PARA .NET (SharpDevelop / Visual Studio) ===
+# Binarios y carpetas de compilación
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+**/bin/
+**/obj/
+
+# Archivos de configuración de usuario y temporales
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+.vs/
+.sharpdevelop/
+*.bak
+*.cache
+*.opendb
+
+# === EXCLUSIONES PARA PYTHON ===
+# Byte-compiled / archivos de ejecución
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos virtuales
+venv/
+env/
+ENV/
+.env
+.venv
+
+# Distribución / empaquetado
+dist/
+build/
+*.egg-info/
+
+# === EXCLUSIONES DE SISTEMA Y LOGS ===
+.DS_Store
+Thumbs.db
+*.log
+desktop.ini
