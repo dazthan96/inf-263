@@ -55,17 +55,17 @@ namespace clase_net
 			cwR = 0;
 			cwG = 0;
 			cwB = 0;
-			for (int i = e.X-5; i<e.X+5;i++){
-				for(int j =e.Y-5;j<e.Y+5; j++){
+			for (int i = e.X -(ventana/2); i<e.X+(ventana/2);i++){
+				for(int j =e.Y-(ventana/2);j<e.Y+(ventana/2); j++){
 					c = bmp.GetPixel(i,j);
 					cwR = cwR + c.R;
 					cwG = cwG + c.G;
 					cwB = cwB + c.B;
 				}
 			}
-			cwR = cwR /100;
-			cwG = cwG /100;
-			cwB = cwB /100;
+			cwR = cwR /(ventana*ventana);
+			cwG = cwG /(ventana*ventana);
+			cwB = cwB /(ventana*ventana);
 			textBox1.Text = textBox1.Text + " " +cwR.ToString();
 			textBox2.Text = textBox2.Text + " " +cwG.ToString();
 			textBox3.Text = textBox3.Text + " " +cwB.ToString();
@@ -153,25 +153,50 @@ namespace clase_net
 			int cRm; 
 			int cGm; 
 			int cBm;
-			for (int i=0; i<bmp.Width -ventana; i+ventana){
-				for(int j=0; j < bmp.Height -ventana; j+ventana){
+			for (int i=0; i<bmp.Width -ventana; i = i+ventana){
+				for(int j=0; j < bmp.Height -ventana;j = j+ventana){
 					cRm = 0;
 					cGm = 0;
 					cBm = 0;
-					for(int k=1;k<i+ventana;k++){
+					for(int k=i;k<i+ventana;k++){
 						for(int l=j; l<j + ventana;l++){
+							c = bmp.GetPixel(k,l);
+							cRm = cRm + c.R;
+							cGm = cGm + c.G;
+							cBm = cBm + c.B;
 						}
-						c = bmp.GetPixel();
 					}
-					c = bmp.GetPixel(i,j);
-					if((cR-10 < c.R) && (c.R <cR +10) && (cG-10 < c.G) && (c.G <cG +10) && (cB-10 < c.B) && (c.B <cB +10))
-						bmp2.SetPixel(i,j, Color.FromArgb(0, 0, 0));
-					
-					else
-						bmp2.SetPixel(i,j, Color.FromArgb(c.R, c.G, c.B));
+					cRm = cRm/(ventana*ventana);
+					cGm = cGm/(ventana*ventana);
+					cBm = cBm/(ventana*ventana);
+					if ((cwR - 10 < cRm) && (cRm < cwR + 10) && (cwG - 10 < cGm) && (cGm < cwG + 10) && (cwB - 10 < cBm) && (cBm < cwB + 10))
+                    {
+                        for (int k=i; k<i+ventana; k++)
+                            for (int l = j; l < j + ventana; l++)
+                            {
+                                bmp2.SetPixel(k, l, Color.FromArgb(0, 0, 0));
+                            }
+                    }
+                    else
+                    {
+                        for (int k = i; k < i + ventana; k++)
+                            for (int l = j; l < j + ventana; l++)
+                            {
+                                c = bmp.GetPixel(k, l);
+                                bmp2.SetPixel(k, l, Color.FromArgb(c.R, c.G, c.B));
+                            }
+                    }
 				}
 			}
 			pictureBox1.Image = bmp2;
+		}
+		void MainFormLoad(object sender, EventArgs e)
+		{
+			ventana =10;
+		}
+		void PictureBox2Click(object sender, EventArgs e)
+		{
+	
 		}
 		
 		
