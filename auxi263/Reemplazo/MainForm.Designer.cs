@@ -46,6 +46,7 @@ namespace Reemplazo
 		private System.Windows.Forms.Button eliminarTono;
 		private System.Windows.Forms.Button eliminarTextura;
 		private System.Windows.Forms.Button pixelar;
+		private System.Windows.Forms.Button detectarBorder;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -100,6 +101,7 @@ namespace Reemplazo
 			this.eliminarTono = new System.Windows.Forms.Button();
 			this.eliminarTextura = new System.Windows.Forms.Button();
 			this.pixelar = new System.Windows.Forms.Button();
+			this.detectarBorder = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tablaDatos)).BeginInit();
 			this.SuspendLayout();
@@ -370,11 +372,22 @@ namespace Reemplazo
 			this.pixelar.UseVisualStyleBackColor = true;
 			this.pixelar.Click += new System.EventHandler(this.PixelarClick);
 			// 
+			// detectarBorder
+			// 
+			this.detectarBorder.Location = new System.Drawing.Point(331, 60);
+			this.detectarBorder.Name = "detectarBorder";
+			this.detectarBorder.Size = new System.Drawing.Size(75, 23);
+			this.detectarBorder.TabIndex = 15;
+			this.detectarBorder.Text = "detectar borde";
+			this.detectarBorder.UseVisualStyleBackColor = true;
+			this.detectarBorder.Click += new System.EventHandler(this.DetectarBorderClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(893, 320);
+			this.Controls.Add(this.detectarBorder);
 			this.Controls.Add(this.pixelar);
 			this.Controls.Add(this.eliminarTextura);
 			this.Controls.Add(this.eliminarTono);

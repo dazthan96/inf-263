@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 namespace Reemplazo
@@ -239,7 +240,47 @@ namespace Reemplazo
 		        }
 		    }
 		}
-		
-		
+		void DetectarBorderClick(object sender, EventArgs e)
+		{
+			Bitmap bmp2 = new Bitmap(bmp.Width, bmp.Height);
+			Graphics g = Graphics.FromImage(bmp2);
+			g.FillRectangle(Brushes.White, 0,0,bmp2.Width, bmp2.Height);
+			g.Dispose();
+			Bitmap imgGris = (Bitmap)pictureBox1.Image;
+			
+			double [,] suavizado ={{1.0/9,1.0/9,1.0/9},{1.0/9,1.0/9,1.0/9},{1.0/9,1.0/9,1.0/9}};
+			Bitmap bmpSuavizado = new Bitmap(bmp.Width, bmp.Height);
+			for (int i = 1; i < imgGris.Width -1; i++) {
+				for (int j = 1; j < imgGris.Height -1; j++) {
+					double suma=0;
+					for (int k = -1; k <= 1; k++) {
+						for (int l = -1; l <= 1; l++) {
+							Color c = imgGris.GetPixel(i+k, j+l);
+							suma += c.R * suavizado[k+1,l+1];
+						}
+					}
+					int val = Math.Min((int)suma, 255);
+					bmpSuavizado.SetPixel(i,j, Color.FromArgb(val,val,val));
+				}
+			}
+			int umbral = 35;
+			int [,] laplace ={{1,1,1},{1,-8,1},{1,1,1}};
+			for (int i = 1; i < bmpSuavizado.Width -1; i++) {
+				for (int j = 1; j < bmp.Height -1; j++) {
+					int suma = 0;
+					for (int k = -1; k <=1; k++) {
+						for (int l = -1; l <=1; l++) {
+							Color c = bmpSuavizado.GetPixel(i+k,j+l);
+							suma += c.R * laplace[k+1,l+1];
+						}
+					}
+					int valor = Math.Min(Math.Abs(suma)*2, 255);
+					if (valor>umbral) {
+						bmp2.SetPixel(i,j,Color.Black);
+					}
+				}
+			}
+			pictureBox1.Image = bmp2;
+		}
 	}
 }
