@@ -1,0 +1,24 @@
+USE master;
+CREATE LOGIN [inf263]
+WITH PASSWORD = '123456',
+CHECK_POLICY = OFF;
+
+USE [texturas];
+CREATE USER [inf263] FOR LOGIN [inf263];
+ALTER ROLE [db_datareader] ADD member [inf263];
+ALTER role [db_datawriter] ADD member [inf263];
+
+SELECT 
+    CASE SERVERPROPERTY('IsIntegratedSecurityOnly')   
+        WHEN 1 THEN 'Solo Autenticación de Windows'   
+        WHEN 0 THEN 'Modo Mixto (Windows y SQL Server)'   
+    END as Modo_Autenticacion;
+create TABLE textura(
+id INT PRIMARY KEY IDENTITY(1,1),
+r INT,
+g INT,
+b INT,
+descripcion VARCHAR(20),
+cr INT,
+cg INT,
+cb INT); 

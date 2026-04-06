@@ -45,6 +45,7 @@ namespace Reemplazo
 		private System.Windows.Forms.Button eliminarColor;
 		private System.Windows.Forms.Button eliminarTono;
 		private System.Windows.Forms.Button eliminarTextura;
+		private System.Windows.Forms.Button pixelar;
 		
 		/// <summary>
 		/// Disposes resources used by the form.
@@ -98,6 +99,7 @@ namespace Reemplazo
 			this.eliminarColor = new System.Windows.Forms.Button();
 			this.eliminarTono = new System.Windows.Forms.Button();
 			this.eliminarTextura = new System.Windows.Forms.Button();
+			this.pixelar = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.tablaDatos)).BeginInit();
 			this.SuspendLayout();
@@ -358,11 +360,22 @@ namespace Reemplazo
 			this.eliminarTextura.UseVisualStyleBackColor = true;
 			this.eliminarTextura.Click += new System.EventHandler(this.EliminarTexturaClick);
 			// 
+			// pixelar
+			// 
+			this.pixelar.Location = new System.Drawing.Point(221, 60);
+			this.pixelar.Name = "pixelar";
+			this.pixelar.Size = new System.Drawing.Size(103, 23);
+			this.pixelar.TabIndex = 14;
+			this.pixelar.Text = "Pixelar Imagen";
+			this.pixelar.UseVisualStyleBackColor = true;
+			this.pixelar.Click += new System.EventHandler(this.PixelarClick);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(893, 320);
+			this.Controls.Add(this.pixelar);
 			this.Controls.Add(this.eliminarTextura);
 			this.Controls.Add(this.eliminarTono);
 			this.Controls.Add(this.eliminarColor);

@@ -155,8 +155,37 @@ namespace Reemplazo
 							if (esParecido) {
 								bmp2.SetPixel(k,l,Color.FromArgb(0,0,0));
 							} else {
-								bmp2.SetPixel(k,l, Color.FromArgb(c.R, c.G, c.B));
+								Color colorOriginal = bmp.GetPixel(k,l);
+								bmp2.SetPixel(k,l, Color.FromArgb(colorOriginal.R, colorOriginal.G, colorOriginal.B));
 							}
+						}
+					}
+				}
+			}
+			pictureBox1.Image = bmp2;
+		}
+		void PixelarClick(object sender, EventArgs e)
+		{
+			Color c = new Color();
+			Bitmap bmp2 = new Bitmap(bmp.Width,bmp.Height);
+			int nuevo_mosaico = 3;
+			for (int i = 0; i < ancho - nuevo_mosaico; i+=nuevo_mosaico) {
+				for (int j = 0; j < alto - nuevo_mosaico; j+=nuevo_mosaico) {
+					int sumaR=0, sumaG=0, sumaB=0;
+					for (int k = i; k < i+nuevo_mosaico; k++) {
+						for (int l = j; l < j+nuevo_mosaico; l++) {
+							c = bmp.GetPixel(k,l);
+							sumaR+=c.R;
+							sumaG+=c.G;
+							sumaB+=c.B;
+						}
+					}
+					int promR = sumaR / (nuevo_mosaico*nuevo_mosaico);
+					int promG = sumaG / (nuevo_mosaico*nuevo_mosaico);
+					int promB = sumaB / (nuevo_mosaico*nuevo_mosaico);
+					for (int k = i; k < i + nuevo_mosaico; k++) {
+						for (int l = j; l < j + nuevo_mosaico; l++) {
+							bmp2.SetPixel(k,l, Color.FromArgb(promR,promG, promB));
 						}
 					}
 				}
@@ -210,6 +239,7 @@ namespace Reemplazo
 		        }
 		    }
 		}
+		
 		
 	}
 }

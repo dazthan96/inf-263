@@ -41,3 +41,6 @@ build/
 Thumbs.db
 *.log
 desktop.ini
+#carpeta no importantes
+*frames/
+video/historia2.mp4
